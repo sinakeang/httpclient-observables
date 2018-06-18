@@ -27,8 +27,22 @@ export class AppComponent implements OnInit {
       (err: HttpErrorResponse) => {
         if (err.error instanceof Error) {
           console.log("Client Side Error occured");
+        } else {
+          console.log("Server Side Error occured");
         }
-        console.log("Server Side Error occured");
+      }
+    )
+
+    const req = this.http.post('http://jsonplaceholder.typicode.com/posts', {
+      title: 'foo',
+      body: 'bar',
+      userId: 1
+    }).subscribe(
+      res => {
+        console.log(res);
+      },
+      err => {
+        console.log("Error occured");
       }
     )
   }
