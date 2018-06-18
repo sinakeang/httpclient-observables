@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 interface UserResponse {
   login: string,
@@ -24,8 +24,11 @@ export class AppComponent implements OnInit {
         console.log("User Bio: " + data.bio);
         console.log("User Company: " + data.company);
       },
-      err => {
-        console.log("Error occured");
+      (err: HttpErrorResponse) => {
+        if (err.error instanceof Error) {
+          console.log("Client Side Error occured");
+        }
+        console.log("Server Side Error occured");
       }
     )
   }
