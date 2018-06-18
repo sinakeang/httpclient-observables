@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
         console.log("User Login: " + data.login);
         console.log("User Bio: " + data.bio);
         console.log("User Company: " + data.company);
-      })
+      },
+      err => {
+        console.log("Error occured");
+      }
+    )
   }
 }
